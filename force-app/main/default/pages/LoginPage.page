@@ -1,0 +1,18 @@
+<apex:page controller="ControllerLoginPage" >
+    <apex:form id="theBlock">
+        <apex:pageBlock title="Student" >
+            <apex:pageMessages />
+            <apex:pageBlockSection columns="1">
+                <apex:inputText value="{!student.Email__c}" />
+				<apex:inputSecret value="{!student.Password__c}" redisplay="true" />
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons location="bottom" >
+                <apex:commandButton action="{!login}" value="Login">
+                    <apex:param value="{!student.id}" assignTo="{!idStudent}"/>
+                </apex:commandButton>
+                <apex:commandButton action="{!goRegistration}" value="SignUp"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+        <apex:commandButton action="{!backHomePage}" value="Home Page" />
+    </apex:form>
+</apex:page>

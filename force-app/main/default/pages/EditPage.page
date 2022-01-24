@@ -1,0 +1,51 @@
+<apex:page controller="ControllerEditPage">
+    <apex:form id="Allform">
+        <apex:pageBlock title="Student Edit" >
+            <apex:pageBlockSection columns="1">
+                <apex:inputField value="{!std.Name}" />
+                <apex:inputField value="{!std.Email__c }"/>
+                
+                <apex:selectList size="1" label="Books" value="{!selectedBook}">
+                    <apex:selectOptions value="{!BookStudent}" >
+                    </apex:selectOptions>
+                    <apex:commandButton value="Delete" action="{!deleteBook}" reRender="Allform">
+                        <apex:param name="idBook" value="{!BookStudent}" />
+                    </apex:commandButton>
+                </apex:selectList>
+                
+                <apex:pageBlock title="Books of student" >
+                    <apex:pageBlockTable value="{!BooksList}" var="book" >
+                        <apex:column headerValue="Name book">
+                            <apex:outputField value="{! book.Name }" />
+                            <apex:facet name="Book name">Book name</apex:facet>
+                        </apex:column>
+                        <apex:column headerValue="Data of issue" >
+                            <apex:outputField value="{! book.Date_of_issue__c }" />
+                            <apex:facet name="Book name">Data of issue</apex:facet>
+                        </apex:column>
+                        <apex:column headerValue="Return data">
+                            <apex:outputField value="{! book.Return_data__c }" />
+                            <apex:facet name="Return data">Return data</apex:facet>
+                        </apex:column>
+                        <apex:inlineEditSupport event="ondblClick" />
+                        
+                    </apex:pageBlockTable>
+                </apex:pageBlock>
+                <apex:commandButton action="{!Edit}" value="Edit" />
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        
+     <apex:pageBlock title="Add book">
+                  <apex:pageMessages />
+            <apex:pageBlockSection columns="1">
+                <apex:inputField value="{! addbook.Name }" />
+                <apex:inputField value="{! addbook.Date_of_issue__c }"  />
+                <apex:inputField value="{! addbook.Return_data__c }" />
+            </apex:pageBlockSection> 
+            <apex:pageBlockButtons location="bottom" >
+                <apex:commandButton action="{!addBook}" value="Add book" reRender="Allform"/>
+                <apex:commandButton action="{!goBack}" value="Back"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

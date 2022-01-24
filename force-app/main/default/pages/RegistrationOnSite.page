@@ -1,0 +1,16 @@
+<apex:page controller="ControllerRegistrationOnSite">
+    <apex:form id="Form">
+        <apex:pageBlock title="Registration">
+            <apex:pageMessages />
+            <apex:pageBlockSection columns="1">
+                <apex:inputField value="{! addStudent.Name }" />
+                <apex:inputText value="{! addStudent.Email__c }" />
+                <apex:inputSecret value="{! addStudent.Password__c }" redisplay="true" />
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons location="bottom" >
+                <apex:commandButton action="{!backToLogin}" value="Login"/>
+                <apex:commandButton action="{!addStudent}" value="SignUp"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,50 @@
+<apex:page controller="ControllerMainPage" tabStyle="Student__c">   
+    <apex:form id="theBlock">
+        <apex:pageBlock title="Student" >
+            <apex:pageMessages />
+            <apex:pageBlockSection columns="1">
+                <apex:inputField value="{! studentAdd.Name }"/>
+                <apex:inputField value="{! book.Date_of_issue__c }" />
+                <apex:inputField value="{! book.Return_data__c }" />
+                <apex:inputField value="{! studentAdd.Email__c }" />
+                <apex:inputField value="{! book.Name }"/>
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons location="bottom" >
+                <apex:commandButton action="{!save}" value="Save" reRender="theBlock"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+        
+        <apex:pageBlock title="Students List" id="students_list">
+            <apex:pageBlockTable value="{!students}" var="ct" >
+                <apex:column >
+                    <apex:outputLink value="{!$Page.EditPage}?id={!ct.StudentId}">Edit</apex:outputLink>
+                </apex:column>
+                
+                <apex:column >
+                    <apex:commandButton value="Books of student" action="{!studentInfo}"  rerender="books_list" >
+                        <apex:param name="idStudent" value="{!ct.StudentId}" assignTo="{!idStudent}"/>
+                    </apex:commandButton>
+                </apex:column>
+                
+                <apex:column value="{! ct.Name}" headerValue="Name"/>
+                <apex:column value="{! ct.Email }" headerValue="Email"/>
+                <apex:column >
+                    <apex:commandButton value="Delete" action="{!deleteStudent}"  rerender="theBlock" >
+                        <apex:param name="idStudent" value="{!ct.StudentId}" assignTo="{!idStudent}"/>
+                    </apex:commandButton>
+                </apex:column>
+            </apex:pageBlockTable>
+            
+        </apex:pageBlock>
+        <apex:pageBlock title="Books of student "  id="books_list">
+            <apex:pageBlockTable value="{!bookList}" var="book" >
+                <apex:column value="{! book.Name }" headerValue="Books"/>
+                <apex:column value="{!book.Return_data__c }" headerValue="Return data"/>
+                <apex:column value="{!book.Date_of_issue__c }" headerValue="Data issue"/>
+            </apex:pageBlockTable> 
+            <p>
+               <apex:commandButton action="{!backHomePage}" value="Home Page" style="float:right; "/>
+            </p>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

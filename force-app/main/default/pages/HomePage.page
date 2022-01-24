@@ -1,0 +1,11 @@
+<apex:page controller="ControllerHomePage">
+    <apex:form >
+    <apex:pageBlock title="Navigate" >
+                  <apex:pageMessages />
+            <apex:pageBlockButtons location="bottom" >
+                <apex:commandButton action="{!mainPage}" value="Admin" />
+                <apex:commandButton action="{!studentPage}" value="Student"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+        </apex:form>
+</apex:page>
