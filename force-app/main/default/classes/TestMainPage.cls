@@ -18,9 +18,9 @@ public class TestMainPage {
         Books__c book = new Books__c(Name = 'testBook',Student__c = student.id);
         insert book;
     }
+
     @isTest
     public static void testSave() {
-        
         PageReference pageRef = Page.MainPage;
         Test.setCurrentPage(pageRef);
         ControllerMainPage controller = new ControllerMainPage();
@@ -36,9 +36,9 @@ public class TestMainPage {
         List<Books__c> b = [SELECT Name FROM Books__c WHERE Name = 'testBookInSave'];
         System.assertEquals(1,b.size());
         }
+
     @isTest
     public static void testSaveFail() {
-        
         PageReference pageRef = Page.MainPage;
         Test.setCurrentPage(pageRef);
         ControllerMainPage controller = new ControllerMainPage();
@@ -54,18 +54,17 @@ public class TestMainPage {
         List<Books__c> b = [SELECT Name FROM Books__c WHERE Name = :controller.book.Name];
         System.assertEquals(0,b.size());
         }
+
     @isTest
     public static void testGetStudent() {
-        
         PageReference pageRef = Page.MainPage;
         Test.setCurrentPage(pageRef);
         ControllerMainPage controller = new ControllerMainPage();
-        controller.getStudents();
-                
+        controller.getStudents(); 
     }
+
     @isTest
     public static void testDeleteStudentTrue() {
-        
         PageReference pageRef = Page.MainPage;
         Test.setCurrentPage(pageRef);
         ControllerMainPage controller = new ControllerMainPage();
@@ -78,9 +77,9 @@ public class TestMainPage {
         List<Student__c> stdl = [SELECT id FROM Student__c WHERE name = 'test'];
         System.assertEquals(0, stdl.size());
     }
+
     @isTest
     public static void testDeleteStudentFalse() {
-        
         PageReference pageRef = Page.MainPage;
         Test.setCurrentPage(pageRef);
         ControllerMainPage controller = new ControllerMainPage();
@@ -93,9 +92,9 @@ public class TestMainPage {
         List<Student__c> stdl = [SELECT id FROM Student__c WHERE name = 'testStudent'];
         System.assertEquals(1, stdl.size());
     }
+
     @isTest
     public static void studentInfo() {
-        
         PageReference pageRef = Page.MainPage;
         Test.setCurrentPage(pageRef);
         ControllerMainPage controller = new ControllerMainPage();
@@ -115,9 +114,9 @@ public class TestMainPage {
         ];
         System.assertEquals(1, bookList.size());
     }
+//test coment
     @isTest
     public static void backHomePage() {
-        
         PageReference pageRef = Page.MainPage;
         Test.setCurrentPage(pageRef);
         ControllerMainPage controller = new ControllerMainPage();
